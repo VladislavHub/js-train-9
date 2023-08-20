@@ -11,8 +11,19 @@ function findElementGreaterThan(arr, num) {
   // повертаємо undefined
   // Використовуємо метод find для пошуку першого елементу, який є більшим за задане число num.
   // Перевіряємо чи є елемент який задовільняє умову
-  //Якщо так повертаємо елемент
+  // Якщо так повертаємо елемент
   // Якщо ні повертаємо рядок Числа яке задовільняе умову не знайдено
+  if(!Array.isArray(arr)){
+    return undefined;
+  }
+
+  let foundElement = arr.find(element => element > num)
+
+  if(foundElement !== undefined){
+    return foundElement;
+  }else{
+    return "Числа яке задовільняе умову не знайдено"
+  }
 }
 
 console.log("Завдання: 1  ==============================");
@@ -31,6 +42,17 @@ function findIndexByProperty(arr, name) {
   // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо -1
   // Використовуємо метод findIndex для пошуку індексу об'єкта, властивість 'name' якого співпадає з заданим іменем.
   // Повертаємо знайдений індекс або -1, якщо об'єкт не знайдено.
+  if(!Array.isArray(arr)){
+    return -1;
+  }
+
+  let foundIndex = (element  => element.name === name)
+
+  if(foundIndex !== undefined){
+    return arr.findIndex(foundIndex);
+  }else{
+    return -1;
+  }
 }
 
 console.log("Завдання: 2  ==============================");
@@ -57,6 +79,17 @@ function findLastEvenNumber(arr) {
   // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
   // За допомогою метода findLast знаходимо останнє парне число в масиві.
   // Повертаємо знайдене число або 'Парних чисел не знайдено', якщо таке число не знайдено.
+  if(!Array.isArray(arr)){
+    return 'Вхідний параметр має бути масивом'
+  }
+
+  let lastEvenNumber = arr.findLast((element) => element % 2 === 0)
+
+  if(lastEvenNumber !== 0){
+    return lastEvenNumber;
+  }else{
+    return 'Парних чисел не знайдено'
+  }
 }
 
 console.log("Завдання: 3 ==============================");
@@ -76,7 +109,15 @@ function getSubArrayAndConvertToString(arr, startIdx) {
   // За допомогою методу slice() отримуємо підмасив від заданого індексу до кінця масиву.
   // За допомогою методу join() конвертуємо підмасив в рядок.
   // Повертаємо рядок.
+  
+  if(!Array.isArray(arr)){
+    return 'Вхідний параметр має бути масивом'
+  };
+
+  let index = arr.slice(startIdx)
+  return index.join(' ');
 }
+
 
 console.log("Завдання: 4 ==============================");
 console.log(
@@ -100,6 +141,14 @@ function getArrayKeys(arr) {
   // За допомогою методу keys() отримуємо об'єкт ітератора, який містить ключі масиву.
   // Конвертуємо ітератор в масив за допомогою методу from.
   // Повертаємо масив ключів.
+
+  if(!Array.isArray(arr)){
+    return 'Вхідний параметр має бути масивом';
+  }
+
+  let arrayKeys = arr.keys();
+
+  return Array.from(arrayKeys)
 }
 
 console.log("Завдання: 5  ==============================");
@@ -119,6 +168,15 @@ function getPositiveArrayValues(arr) {
   // Конвертуємо ітератор в масив.
   // За допомогою методу filter() отримуємо масив лише з додатніми значеннями.
   // Повертаємо масив додатніх значень.
+  if(!Array.isArray(arr)){
+    return 'Вхідний параметр має бути масивом'
+  }
+
+  let iterator = arr.values()
+  let valuesArray  = Array.from(iterator)
+  let positiveValue = valuesArray.filter(value => value > 0);
+
+  return positiveValue
 }
 
 console.log("Завдання: 6  ==============================");
@@ -138,7 +196,16 @@ function removeAndDouble(arr, startIdx) {
   // За допомогою методу splice() видаляємо елементи масиву починаючи з заданого індексу.
   // За допомогою методу map() подвоюємо кожен елемент масиву.
   // Повертаємо масив подвоєних елементів.
-}
+  if(!Array.isArray(arr)) {
+    return 'Вхідний параметр має бути масивом';
+  };
+
+  arr.splice(startIdx)
+  let doubledArray = arr.map(element => element * 2);
+
+  return doubledArray
+  }
+  
 
 console.log("Завдання: 7 ==============================");
 console.log(removeAndDouble([1, 2, 3, 4, 5], 2)); // Виведе [ 2, 4 ]
@@ -156,6 +223,15 @@ function sumAndPrint(arr) {
   // За допомогою методу reduce() обчислюємо суму елементів масиву.
   // За допомогою методу forEach() виводимо кожен елемент масиву в консоль.
   // Повертаємо суму елементів масиву.
+  if(!Array.isArray(arr)) {
+    return 'Вхідний параметр має бути масивом';
+  };
+
+  let sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+
+  arr.forEach(element => console.log(element));
+
+  return sum
 }
 
 console.log("Завдання: 8  ==============================");
@@ -182,6 +258,15 @@ function flattenSquareAndFilter(arr, threshold) {
   // За допомогою методу map() підносимо кожен елемент масиву до квадрату.
   // За допомогою методу filter() фільтруємо елементи, які більше за порогове значення.
   // Повертаємо вирівняний масив, елементи якого підняті до квадрату і профільтровані.
+  if(!Array.isArray(arr)) {
+    return 'Вхідний параметр має бути масивом';
+  };
+
+  let flatArray  = arr.flat();
+  let squaredArray  = flatArray.map(x => x ** 2)
+  let filteredSquaredArray = squaredArray.filter(item => item > threshold)
+  return filteredSquaredArray
+
 }
 
 console.log("Завдання: 9 ==============================");
@@ -211,6 +296,14 @@ function getLastElementsSumAndPrint(arr, n) {
   // За допомогою методу reduceRight() обчислюємо суму останніх n елементів масиву.
   // За допомогою методу forEach() виводимо кожен елемент з останніх n в консоль.
   // Повертаємо суму останніх n елементів масиву.
+  if(!Array.isArray(arr)) {
+    return 'Вхідний параметр має бути масивом';
+  };
+
+  let lastElement = arr.slice(-n);
+  let sum = lastElement.reduceRight((accumulator, currentValue) => accumulator + currentValue, 0);
+  lastElement.forEach(element => {console.log(element)})
+  return sum
 }
 
 console.log("Завдання: 10  ==============================");
@@ -230,6 +323,12 @@ function wordLengths(arr) {
   // Перевіряємо, чи вхідний параметр є масивом, якщо ні, повертаємо 'Вхідний параметр має бути масивом'
   // Використовуємо метод map для створення нового масиву, де кожний елемент - це довжина відповідного слова з вхідного масиву
   // Повертаємо новий масив
+  if(!Array.isArray(arr)) {
+    return 'Вхідний параметр має бути масивом';
+  };
+
+  let lengthsArray = arr.map((element) => element.length);
+  return lengthsArray
 }
 
 console.log("Завдання: 11 ==============================");
@@ -249,6 +348,12 @@ function insertElementAt(arr, index, element) {
   // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
   // Використовуємо метод splice для вставки елемента на позицію index
   // Повертаємо масив з вставленим елементом
+  if(!Array.isArray(arr)) {
+    return 'Вхідний параметр має бути масивом';
+  };
+
+  arr.splice(index, 0, element)
+  return arr
 }
 
 console.log("Завдання: 12 ==============================");
@@ -265,6 +370,12 @@ function flattenArray(arr) {
   // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
   // Використовуємо метод flat з параметром Infinity, щоб "випрямити" масив на будь-яку глибину вкладеності
   // Повертаємо "випрямлений" масив
+  if(!Array.isArray(arr)) {
+    return 'Вхідний параметр має бути масивом';
+  };
+
+  let flattenedArray = arr.flat(Infinity)
+  return flattenedArray
 }
 
 console.log("Завдання: 13 ==============================");
@@ -282,6 +393,12 @@ function expandArrayByN(arr, n) {
   // Перевіряємо, чи вхідні параметри є масивом та числом відповідно, якщо ні повертаємо 'Перший вхідний параметр має бути масивом, другий - числом'
   // Використовуємо метод flatMap для створення нового масиву, де кожне число повторюється n разів
   // Повертаємо розширений масив
+  if(!Array.isArray(arr)) {
+    return 'Вхідний параметр має бути масивом';
+  };
+
+  let expandedArray = arr.flatMap((num) => Array(n).fill(num));
+  return expandedArray
 }
 
 console.log("Завдання: 14 ==============================");
@@ -302,6 +419,21 @@ function findLongestWord(arr) {
   // Порівнюємо довжину поточного слова з довжиною найдовшого слова
   // Інакше повертаємо попереднє найдовше слово без змін
   // Повертаємо найдовше слово
+  if(!Array.isArray(arr)) {
+    return '';
+  };
+
+  let longestWord = arr.reduce((currentLongest, word) => {
+    // Порівнюємо довжину поточного слова з довжиною найдовшого слова
+    if (word.length > currentLongest.length) {
+      return word; // Якщо поточне слово довше, то повертаємо його
+    } else {
+      return currentLongest; // Інакше повертаємо попереднє найдовше слово без змін
+    }
+  }, '');
+
+  return longestWord
+
 }
 console.log("Завдання: 15 ==============================");
 console.log(findLongestWord(["apple", "banana", "pineapple", "watermelon"])); // Виведе 'watermelon'
@@ -320,6 +452,13 @@ function findDuplicateElements(arr) {
   // Використовуємо метод filter() для вибірки лише дубльованих елементів
   // Перевіряємо, чи є індекс поточного елемента відмінним від індексу першого входження елемента, та повертаємо результат
   // Повертаємо новий масив з дубльованими елементами
+  if(!Array.isArray(arr)) {
+    return [];
+  };
+
+  let duplicateElements = arr.filter((element, index, self) => self.indexOf(element) !== index);
+  return duplicateElements
+
 }
 console.log("Завдання: 16 ==============================");
 console.log(findDuplicateElements([1, 2, 3, 4, 2, 5, 6, 3, 5])); // Виведе [2, 3, 5]
@@ -339,6 +478,19 @@ function capitalizeWords(arr) {
   // Перетворюємо першу літеру слова у верхній регістр да додамо до неї всі символи слова крім першого
   //Повертаємо слово
   // Повертаємо новий масив зі словами, у яких перша літера у верхньому регістрі
+  if(!Array.isArray(arr)) {
+    return [];
+  };
+  
+  let capitalizedArray = arr.map(word => {
+    if(word.length === 0) {
+      return '';
+    }
+    
+    return word[0].toUpperCase() + word.slice(1);
+  })
+
+  return capitalizedArray
 }
 console.log("Завдання: 17 ==============================");
 console.log(capitalizeWords(["apple", "banana", "orange"])); // Виведе ['Apple', 'Banana', 'Orange']
@@ -358,6 +510,15 @@ function calculateTotalPrice(arr) {
   // Використовуємо метод reduce() для обчислення загальної ціни
   // Додаємо ціну товару до загальної суми та повертаємо результат
   // Повертаємо загальну ціну всіх товарів
+  if(!Array.isArray(arr)) {
+    return 0;
+  };
+
+  let totalPrice = arr.reduce((accumulator, currentItem) => {
+    return accumulator + currentItem.price;
+  }, 0);
+
+  return totalPrice
 }
 console.log("Завдання: 18 ==============================");
 console.log(
@@ -382,6 +543,12 @@ function findLastNegativeNumberIndex(arr) {
   // Перевіряємо, чи вхідний параметр є масивом, якщо ні, повертаємо -1
   // Використовуємо метод findLastIndex() для знаходження індексу останнього входження від'ємного числа
   // Повертаємо індекс останнього від'ємного числа
+  if(!Array.isArray(arr)) {
+    return -1;
+  };
+
+  let lastIndex = (element) => element < 0;
+  return arr.findLastIndex(lastIndex)
 }
 console.log("Завдання: 19 ==============================");
 console.log(findLastNegativeNumberIndex([1, 2, -3, 4, -5, 6, -7])); // Виведе 6
